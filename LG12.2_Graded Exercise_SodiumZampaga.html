@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LG12.2_SodiumZampaga</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Chloe Marie L. Zampaga">
+    <meta name="keywords" content="HTML, JavaScript, CSS">
+    <meta name="revised" content="04-05-2022">
+
+    <style>
+        table, tr, td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <form id="inputs" onsubmit="return multTable()">
+        <legend>[enter a number between 2 and 10]</legend>
+        <input type="number" name="num1" id="num1">
+        <label>by</label>
+        <input type="number" name="num2" id="num2">
+        <br><br>
+        <input type="submit" value="Click here when ready!">
+    </form>
+    <br>
+    <div id="mtable"></div>
+
+    <script>
+        let num1, num2;
+
+        // get values of inputs and check if the are within the allowed range [2,10]
+        function checkValues() {
+            let allow = false;
+
+            num1 = document.getElementById("num1").value;
+            num2 = document.getElementById("num2").value;
+            
+            if((num1 >= 2 && num1 <= 10) && (num2 >= 2 && num2 <= 10 )) {
+                allow = true;
+            } else {
+                alert("Please enter numbers between 2 and 10");
+            }
+            return allow;
+        }
+
+        // create a multiplication table if inputs are valid
+        function multTable() {
+            if(checkValues() == true) {
+                let table = "<table>";
+                
+                for (i = 1; i <= num1; i++) {
+                    table += "<tr>"
+                    for(j = 1; j <= num2; j++) {
+                        table += "<td>" + (i * j) + "</td>"
+                    }
+                    table += "</tr>"
+                }
+                table += "</table>"
+
+                // the value/text of the table variable is put inside a div in the html document for it to be rendered on the page
+                document.getElementById("mtable").innerHTML = table;
+            }
+            return false;
+        }
+    </script>
+</body>
+</html>
